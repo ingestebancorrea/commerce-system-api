@@ -3,19 +3,19 @@ import { User } from "../entity/User.entity";
 import { encrypt } from "../helpers/encrypt";
 
 export class AuthService {
-  static async login(email: string, password: string) {
-    if (!email || !password) {
+  static async login(username: string, password: string) {
+    if (!username || !password) {
       throw new Error("Email and password required");
     }
 
     const userRepository = AppDataSource.getRepository(User);
-    const user = await userRepository.findOne({ where: { email } });
+    const user = await userRepository.findOne({ where: { email: username } });
 
     if (!user) {
       throw new Error("Invalid credentials");
     }
 
-    const isPasswordValid = await encrypt.comparePassword(user.password, password);
+    const isPasswordValid = encrypt.comparePassword(user.password, password);
     if (!isPasswordValid) {
       throw new Error("Invalid credentials");
     }

@@ -3,12 +3,12 @@ import { User } from "../entity/User.entity";
 import { encrypt } from "../helpers/encrypt";
 
 export class UserService {
-  static async signUp(name: string, email: string, password: string, role: string) {
+  static async signUp(name: string, username: string, password: string, role: string) {
     const encryptedPassword = await encrypt.encryptPass(password);
 
     const user = new User();
     user.name = name;
-    user.email = email;
+    user.email = username;
     user.password = encryptedPassword;
     user.role = role;
 

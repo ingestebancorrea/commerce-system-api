@@ -9,8 +9,8 @@ export class AuthController {
     if (!dto) return;
 
     try {
-      const { email, password } = dto;
-      const { user, token } = await AuthService.login(email, password);
+      const { username, password } = dto;
+      const { user, token } = await AuthService.login(username, password);
 
       res.status(200).json({
         message: "Login successful",

@@ -9,8 +9,8 @@ export class UserController {
     if (!dto) return;
     
     try {
-      const { name, email, password, role } = dto;
-      const { user, token } = await UserService.signUp(name, email, password, role);
+      const { name, username, password, role } = dto;
+      const { user, token } = await UserService.signUp(name, username, password, role);
 
       res.status(200).json({
         message: "User created successfully",
