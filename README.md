@@ -35,7 +35,7 @@ DB_HOST=192.168.1.16  por  ejemplo
 1. Clona el repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/ingestebancorrea/events-manegement-back.git
+   git clone https://github.com/ingestebancorrea/commerce-system-api.git
 
 2. Instalación de Dependencias
     Después de clonar el repositorio y realizar la configuración previa, instala las dependencias del proyecto ejecutando el siguiente comando en tu terminal dentro del directorio del proyecto:
