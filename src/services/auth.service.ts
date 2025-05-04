@@ -25,4 +25,18 @@ export class AuthService {
 
     return { user: userWithoutPassword, token };
   }
+
+  static async renewToken(uid: string) {
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOne({ where: { id: uid } });
+  
+    if (!user) {
+      throw new Error("User not found");
+    }
+  
+    const token = encrypt.generateToken({ id: user.id, rol: user.role });
+    const { password: _, ...userWithoutPassword } = user;
+  
+    return { user: userWithoutPassword, token };
+  }
 }

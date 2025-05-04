@@ -22,4 +22,23 @@ export class AuthController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  static async renewToken(req: Request, res: Response) {
+    try {
+      const currentUser = global.currentUser;
+      const uid = currentUser.id;
+      if (!uid) throw new Error("User ID not found in request");
+  
+      const { user, token } = await AuthService.renewToken(uid);
+  
+      res.status(200).json({
+        message: "Token renew successful",
+        user,
+        token,
+      });
+    } catch (error: any) {
+      console.error(error);
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
